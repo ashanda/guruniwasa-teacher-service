@@ -17,6 +17,7 @@
       <link rel="stylesheet" href="{{asset('themes/default/css/hover.css')}}">
       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
       <link rel="stylesheet" href="{{asset('themes/default/css/custom-css-N.css')}}">
+      <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/html5-qrcode/2.3.8/html5-qrcode.min.js"></script>
    </head>
    <body>
@@ -40,6 +41,7 @@
       <script src="{{ asset('themes/default/js/owl.carousel.min.js') }}"></script>
       <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
       <script src="{{ asset('themes/default/js/admin-custom.js') }}"></script>
+      <script src="{{ asset('themes/default/js/custom.js') }}"></script>
       
 
 

@@ -70,9 +70,11 @@
                      <th>GRADE</th>
                      <th>SUBJECT</th>
                      <th>TOPIC</th>
+                     <th>Thumbnail</th>
                      <th>LINK1</th>
                      <th>LINK2</th>
                      <th>STATUS</th>
+                     
                   </tr>
                </thead>
                <tbody class="font-14 align-items-center fw-500">
@@ -89,11 +91,24 @@
                                        <input type="text" name="lesson_title" placeholder="Enter lesson title" value="{{ $item['lesson_title'] }}">
                               </td>
                               <td>
+                                       <input type="text" name="video_thumb" placeholder="Enter thumbnail ID" value="{{ $item['video_thumb'] }}">
+                              </td>        
+                              <td>
                                        <input type="text" name="video_url1" placeholder="Enter video URL 1" value="{{ $item['video_url1'] }}">
                               </td>
                               <td>
                                        <input type="text" name="video_url2" placeholder="Enter video URL 2" value="{{ $item['video_url2'] }}">
-                                       <button type="submit" class="text-uppercase font-13 text-white rounded-pill py-1 px-5 bg-primary fw-500 align-items-center">SUBMIT</button>
+                              </td>
+                              <td>
+                                 
+                                    <select name="status" class="form-select fw-500 rounded-3 border-dark font-12 mb-2" aria-label="Default select example">
+                                       <option value="Publish" {{ $item['status'] == 'Publish' ? 'selected' : '' }}>Publish</option>
+                                       <option value="Unpublish" {{ $item['status'] == 'Unpublish' ? 'selected' : '' }}>Unpublish</option>
+                                    </select>
+                                    <button type="submit" class="text-uppercase font-13 text-white rounded-pill py-1 px-5 bg-primary fw-500 align-items-center">SUBMIT</button>
+                                 
+                              </td>
+                                       
                                  </form>
                               </td>
                            </tr>

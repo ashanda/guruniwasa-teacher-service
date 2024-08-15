@@ -76,8 +76,12 @@ Route::get('/video/subject/view-list', [VideoController::class, 'videoSubjectLis
 
 Route::get('/note-paper-ansewer-list', [NoteAndPaperController::class, 'notePaperList'])->name('web.note-paper.list');
 Route::get('/pending-list', [NoteAndPaperController::class, 'pendingList'])->name('web.pending.list');
-Route::get('/note-view', [NoteAndPaperController::class, 'noteView'])->name('web.note.view');
+Route::get('/note-view/{id}', [NoteAndPaperController::class, 'noteView'])->name('web.note.view');
 Route::get('/note-upload', [NoteAndPaperController::class, 'noteUpload'])->name('web.note.upload');
+
+Route::post('/note-paper-create', [NoteAndPaperController::class, 'notePaperCreate'])->name('web.note-paper.store');
+Route::post('/note-paper-update', [NoteAndPaperController::class, 'notePaperUpdate'])->name('web.note-paper.update');
+Route::get('/note-paper-destroy/{id}', [NoteAndPaperController::class, 'notePaperDestroy'])->name('web.note-paper.destroy');
 
 
 
@@ -188,6 +192,8 @@ Route::get('/payment-history-list', [PaymentHistoryController::class, 'paymentHi
 Route::get('/tutes-books', [TutesAndBookController::class, 'tutesBook'])->name('web.tutes.book');
 Route::get('/tutes-books-view', [TutesAndBookController::class, 'tutesBookMonthly'])->name('web.tutes.view');
 Route::get('/tutes-view', [TutesAndBookController::class, 'tutesView'])->name('web.tutes.open');
+Route::post('/tutes-view', [TutesAndBookController::class, 'tutesstore'])->name('web.tutes_books.store');
+Route::get('/tutes_books/{id}', [TutesAndBookController::class, 'destroy'])->name('web.tutes_books.destroy');
 
 
 // Online exam
