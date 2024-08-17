@@ -178,7 +178,7 @@
                </div>
             </a>
          </div>
-         {{-- <div class="col-lg-3 col-sm-4  col-10  px-3  mb-3 mx-auto">
+         <div class="col-lg-3 col-sm-4  col-10  px-3  mb-3 mx-auto">
             <a href="{{ route('web.class.paper') }}" class="hvr-shrink w-100">
                <div class="row align-items-center gradient-background-1 py-3 justify-content-around rounded-35 w-100">
                   <div class="col-1  py-1">
@@ -190,7 +190,7 @@
                   </div>
                </div>
             </a>
-         </div> --}}
+         </div>
          <div class="col-lg-3 col-sm-4  col-10  px-3  mb-3 mx-auto">
             <a href="{{ route('web.online.exam') }}" class="hvr-shrink w-100">
                <div class="row align-items-center gradient-background-1 py-3 justify-content-around rounded-35 w-100">
@@ -259,7 +259,7 @@
             </a>
          </div>
 
-         <div class="col-lg-3 col-sm-4  col-10  px-3  mb-3 mx-auto">
+         {{-- <div class="col-lg-3 col-sm-4  col-10  px-3  mb-3 mx-auto">
             <a href="{{ route('web.student_video.view')}}" class="hvr-shrink w-100">
                <div class="row align-items-center gradient-background-1 py-3 justify-content-around rounded-35 w-100">
                   <div class="col-1  py-1">
@@ -271,7 +271,7 @@
                   </div>
                </div>
             </a>
-         </div>
+         </div> --}}
 
          <div class="col-lg-3 col-sm-4  col-10  px-3  mb-3 mx-auto">
             <a href="{{ route('web.student.approval') }}" class="hvr-shrink w-100">

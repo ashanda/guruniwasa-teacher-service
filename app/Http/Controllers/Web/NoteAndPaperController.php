@@ -25,45 +25,59 @@ class NoteAndPaperController extends Controller
 
     public function notePaperList(Request $request)
     {
-        $client = new Client();
-        
-        // Fetch the API Gateway URL from the environment variables
-        $url = env('API_GETWAY_URL') . '/api/v1/teacher-subjects';
+       $client = new Client();
+
+        // Fetch the API Gateway URL from environment variables
+        $apiGatewayUrl = env('API_GETWAY_URL');
+        $teacherId = session('teacher_data')['id'];
+        $subjectIds = session('teacher_data')['subjects'][0]['subject_ids'];
         $accessToken = $request->cookie('access_token');
-        
-       
-       try {
-            $response = $client->get($url, [
-                'headers' => [
-                    'Authorization' => 'Bearer ' . $accessToken,
-                ],
-                'query' => [
-                    'teacher_id' => session('teacher_data')['id'],
-                    'subjects' => session('teacher_data')['subjects'][0]['subject_ids'],
 
-                ]
-            ]);
+        // Define API endpoints
+        $url = $apiGatewayUrl . '/api/v1/teacher-subjects';
+        $urlCount = $apiGatewayUrl . '/api/v1/note-paper-count';
 
-            
-       
+        try {
+            // Function to handle API requests
+            function makeApiRequest($client, $url, $accessToken, $teacherId, $subjectIds) {
+                return $client->get($url, [
+                    'headers' => [
+                        'Authorization' => 'Bearer ' . $accessToken,
+                    ],
+                    'query' => [
+                        'teacher_id' => $teacherId,
+                        'subjects' => $subjectIds,
+                    ]
+                ]);
+            }
+
+            // Make both API requests
+            $response = makeApiRequest($client, $url, $accessToken, $teacherId, $subjectIds);
+            $responseCount = makeApiRequest($client, $urlCount, $accessToken, $teacherId, $subjectIds);
+
+            // Process the responses
             if ($response->getStatusCode() == 200) {
-                
                 $body = json_decode($response->getBody(), true);
-                
+                $countData = json_decode($responseCount->getBody(), true);
+
                 if (isset($body['status']) && $body['status'] === 200) {
-                   
-                    return view('web.note-paper.list_view',compact('body'));
-                }else{
+                    // Pass both responses to the view
+                    return view('web.note-paper.list_view', compact('body', 'countData'));
+                } else {
                     Alert::toast('Something went wrong with the request', 'error');
                     return redirect()->back();
                 }
             }
-            } catch (\Exception $e) {
-                    Log::error('notes and paper error: ' . $e->getMessage());
+        } catch (\GuzzleHttp\Exception\RequestException $e) {
+            Log::error('Notes and paper API request error: ' . $e->getMessage());
+            Alert::toast('Request error: ' . $e->getMessage(), 'error');
+            return redirect()->back();
+        } catch (\Exception $e) {
+            Log::error('Notes and paper general error: ' . $e->getMessage());
+            Alert::toast('An error occurred: ' . $e->getMessage(), 'error');
+            return redirect()->back();
+        }
 
-                    Alert::toast($e->getMessage(), 'error');
-                    return redirect()->back();
-            }
 
         
     }
@@ -71,6 +85,7 @@ class NoteAndPaperController extends Controller
 
     public function noteView(Request $request,$note_id)
     {
+
 
          $client = new Client();
         
@@ -135,7 +150,7 @@ class NoteAndPaperController extends Controller
         $url = env('API_GETWAY_URL') . '/api/v1/teacher-class-note-store';
         $accessToken = $request->cookie('access_token');
 
-        try {
+       try {
             $response = $client->get($url, [
                 'headers' => [
                     'Authorization' => 'Bearer ' . $accessToken,
@@ -153,12 +168,13 @@ class NoteAndPaperController extends Controller
             if ($response->getStatusCode() == 200) {
                 
                 $body = json_decode($response->getBody(), true);
-                  
+
                 if (isset($body['status']) && $body['status'] === 200) {
                               
                     Alert::toast('Note or paper created', 'success');
                     return redirect()->back();
                 }else{
+                    
                     Alert::toast('Something went wrong with the request', 'error');
                     return redirect()->back();
                 }

@@ -29,7 +29,7 @@ use Carbon\Carbon;
                      </a>
                   </li>
                   <li>
-                     <div class="notification">1</div>
+                     <div class="notification">{{ $countData['data']['count'] }}</div>
                   </li>
                </ul>
             </div>
