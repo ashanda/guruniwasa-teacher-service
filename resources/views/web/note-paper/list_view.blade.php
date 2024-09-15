@@ -3,6 +3,7 @@
 @php
 use Carbon\Carbon;
 @endphp
+
 <div class="container-fluid">
    <div class="row align-items-center pt-2">
       <div class="col-lg-3 col-sm-3">
@@ -28,7 +29,7 @@ use Carbon\Carbon;
                      </a>
                   </li>
                   <li>
-                     <div class="notification">1</div>
+                     <div class="notification">{{ $countData['data']['count'] }}</div>
                   </li>
                </ul>
             </div>
@@ -45,16 +46,18 @@ use Carbon\Carbon;
                   </tr>
                </thead>
                <tbody class="font-14 align-items-center fw-500">
+                  @foreach ($body['data']['subject']['data']['teacher_subjects'] as $subject)
                   <tr>
-                     <td>GRADE 6 SCIENCE THEORY ENGLISH MEDIUM
-                     </td>
+                     <td>{{ $subject['grade']['gname'] }} - {{ $subject['sname'] }}</td>
+                     
                      <td>
-                        <a href="{{  route('web.note.view') }}" 
+                        <a href="{{  route('web.note.view', $subject['id']) }}" 
                            class=" w-100 text-uppercase font-14 text-white rounded-pill py-2 px-3 
                            bg-primary fw-500 align-items-center text-center  hvr-shrink">VIEW MORE
                         </a>
                      </td>
                   </tr>
+                  @endforeach
                </tbody>
             </table>
          </div>

@@ -45,7 +45,7 @@
                      <td>
                         PRATHIBHA SENARATH 
                         <p>
-                            <a href="{{  route('web.note.view') }}" 
+                            <a href="" 
                             class=" text-uppercase font-10 text-white rounded-pill py-2 px-3 
                             bg-info fw-500 align-items-center text-center  hvr-shrink">VIEW STUDENT DETAILS
 

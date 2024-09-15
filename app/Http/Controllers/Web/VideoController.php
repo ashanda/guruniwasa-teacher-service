@@ -153,6 +153,8 @@ class VideoController extends Controller
                     'lesson_title' =>  $request->lesson_title,
                     'video_url1' => $request->video_url1,
                     'video_url2' => $request->video_url2,
+                    'video_thumb' => $request->video_thumb,
+                    'status' => $request->status
 
                 ]
             ]);

@@ -11,7 +11,7 @@ class ClasspaperController extends Controller
     {
         try{
 
-            return view('web.class_papper.view');
+            return view('web.class_paper.view');
 
         }catch(\Exception $exception){
 
@@ -24,7 +24,7 @@ class ClasspaperController extends Controller
     {
         try{
 
-            return view('web.class_papper.paper_view');
+            return view('web.class_paper.paper_view');
 
         }catch(\Exception $exception){
 
